@@ -230,12 +230,12 @@ def main():
         x_pct = st.slider("上位 x% 親ペア (X%)", 0.05, 100.0, pref.get('x_pct', 10.0), step=0.05, format="%.2f")
         y_pct = st.slider("下位 y% 除外 (Y%)", 0.05, 100.0, pref.get('y_pct', 20.0), step=0.05, format="%.2f")
         child = st.selectbox("子", ["(未選択)"] + gen2_chars)
-        parent1 = st.selectbox("親1", ["(未選択)"] + gen2_chars)
-        parent2 = st.selectbox("親2", ["(未選択)"] + gen2_chars)
         own1 = st.checkbox("Owned 親1")
-        own2 = st.checkbox("Owned 親2")
+        parent1 = st.selectbox("親1", ["(未選択)"] + gen2_chars)
         anc11 = st.selectbox("祖1-1", ["(未選択)"] + gen2_chars)
         anc12 = st.selectbox("祖1-2", ["(未選択)"] + gen2_chars)
+        own2 = st.checkbox("Owned 親2")
+        parent2 = st.selectbox("親2", ["(未選択)"] + gen2_chars)
         anc21 = st.selectbox("祖2-1", ["(未選択)"] + gen2_chars)
         anc22 = st.selectbox("祖2-2", ["(未選択)"] + gen2_chars)
 
@@ -248,6 +248,7 @@ def main():
                     gen2_arr, gen2_chars
                 )
             # 結果表示
+            st.markdown(f"[検索結果URLを開く]({url})")
             wh_col, bl_col = st.columns(2)
             with wh_col:
                 st.subheader("Whitelist")
@@ -287,7 +288,6 @@ def main():
                 g1, white_total, search_count, white_type,
                 blue_params, red_params
             )
-            st.markdown(f"[検索結果URLを開く]({url})")
 
     with right_col:
         st.subheader("数値設定")
