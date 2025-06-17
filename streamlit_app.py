@@ -249,23 +249,7 @@ def main():
                     x_pct, y_pct, spec_folder,
                     gen2_arr, gen2_chars
                 )
-            # 結果表示
-            url = generate_url(
-                whitelist, blacklist,
-                name_to_ids, id_deploy,
-                g1, white_total, search_count, white_type,
-                blue_params, red_params
-            )            
-            st.markdown(f"[検索結果URLを開く]({url})")
-            wh_col, bl_col = st.columns(2)
-            with wh_col:
-                st.subheader("Whitelist")
-                for n in whitelist:
-                    st.write(n)
-            with bl_col:
-                st.subheader("Blacklist")
-                for n in blacklist:
-                    st.write(n)
+
             # URL生成用パラメータ収集
             blue_params = []
             for i in range(4):
@@ -290,6 +274,24 @@ def main():
             search_count = st.session_state.get('search_count', pref['search_count'])
             white_total = st.session_state.get('white_total', pref['white_total'])
             white_type = st.session_state.get('white_type', 0)
+            url = generate_url(
+                whitelist, blacklist,
+                name_to_ids, id_deploy,
+                g1, white_total, search_count, white_type,
+                blue_params, red_params
+            )
+            st.markdown(f"[検索結果URLを開く]({url})")
+            # 結果表示
+            wh_col, bl_col = st.columns(2)
+            with wh_col:
+                st.subheader("Whitelist")
+                for n in whitelist:
+                    st.write(n)
+            with bl_col:
+                st.subheader("Blacklist")
+                for n in blacklist:
+                    st.write(n)
+
 
     with right_col:
         st.subheader("数値設定")
